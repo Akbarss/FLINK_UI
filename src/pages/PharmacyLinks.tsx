@@ -1,27 +1,26 @@
-import { useState } from "react"
-import { 
-  Pill, 
-  Phone, 
-  MapPin, 
-  Clock, 
-  ShoppingCart, 
-  Heart, 
-  Shield, 
-  Users, 
-  Gift,
-  MessageSquare,
-  Star,
-  Truck,
-  CreditCard,
-  UserCheck,
-  Stethoscope,
+import pharmacyHero from "@/assets/logo.jpg";
+import { BranchModal } from "@/components/BranchModal";
+import { LinkCard } from "@/components/LinkCard";
+import {
   Activity,
-  Plus
-} from "lucide-react"
-import { LinkCard } from "@/components/LinkCard"
-import { BranchModal } from "@/components/BranchModal"
-import { MedicalButton } from "@/components/MedicalButton"
-import pharmacyHero from "@/assets/pharmacy-hero.jpg"
+  Clock,
+  CreditCard,
+  Gift,
+  Heart,
+  MapPin,
+  MessageSquare,
+  Phone,
+  Pill,
+  Plus,
+  Shield,
+  ShoppingCart,
+  Star,
+  Stethoscope,
+  Truck,
+  UserCheck,
+  Users,
+} from "lucide-react";
+import { useState } from "react";
 
 const branches = [
   {
@@ -32,63 +31,60 @@ const branches = [
     hours: "24/7",
     yandexMaps: "https://yandex.ru/maps/213/moscow/?text=аптека%20центральная",
     googleMaps: "https://maps.google.com/?q=pharmacy+moscow+central",
-    twoGis: "https://2gis.ru/moscow/search/аптека"
+    twoGis: "https://2gis.ru/moscow/search/аптека",
   },
   {
-    id: "2", 
+    id: "2",
     name: "Филиал «Северный»",
     address: "пр. Мира, 128, Москва",
     phone: "+7 (495) 123-45-68",
     hours: "08:00 - 22:00",
     yandexMaps: "https://yandex.ru/maps/213/moscow/?text=аптека%20северная",
     googleMaps: "https://maps.google.com/?q=pharmacy+moscow+north",
-    twoGis: "https://2gis.ru/moscow/search/аптека%20северная"
+    twoGis: "https://2gis.ru/moscow/search/аптека%20северная",
   },
   {
     id: "3",
     name: "Филиал «Южный»",
-    address: "ул. Профсоюзная, 67, Москва", 
+    address: "ул. Профсоюзная, 67, Москва",
     phone: "+7 (495) 123-45-69",
     hours: "09:00 - 21:00",
     yandexMaps: "https://yandex.ru/maps/213/moscow/?text=аптека%20южная",
     googleMaps: "https://maps.google.com/?q=pharmacy+moscow+south",
-    twoGis: "https://2gis.ru/moscow/search/аптека%20южная"
-  }
-]
+    twoGis: "https://2gis.ru/moscow/search/аптека%20южная",
+  },
+];
 
 export default function PharmacyLinks() {
-  const [selectedBranch, setSelectedBranch] = useState<typeof branches[0] | null>(null)
-  const [modalOpen, setModalOpen] = useState(false)
+  const [selectedBranch, setSelectedBranch] = useState<(typeof branches)[0] | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
-  const handleBranchClick = (branch: typeof branches[0]) => {
-    setSelectedBranch(branch)
-    setModalOpen(true)
-  }
+  const handleBranchClick = (branch: (typeof branches)[0]) => {
+    setSelectedBranch(branch);
+    setModalOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div 
-          className="h-48 bg-cover bg-center relative"
+        <div
+          className="h-48 bg-contain bg-no-repeat bg-center relative"
           style={{ backgroundImage: `url(${pharmacyHero})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/10 to-transparent" />
+          {/* Градиенты */}
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/30 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
         </div>
-        
-        <div className="relative -mt-20 px-6">
+
+        <div className="relative -mt-10 px-6">
           <div className="max-w-md mx-auto">
             <div className="medical-card text-center animate-float">
               <div className="w-20 h-20 bg-gradient-medical rounded-full flex items-center justify-center mx-auto mb-4 shadow-medical animate-pulse-soft">
                 <Plus className="w-10 h-10 text-white" />
               </div>
-              <h1 className="text-2xl font-bold text-foreground mb-2">
-                Аптека «ВитаМед»
-              </h1>
-              <p className="text-muted-foreground text-sm">
-                Ваше здоровье — наша забота
-              </p>
+              <h1 className="text-2xl font-bold text-foreground mb-2">Аптека «ВитаМед»</h1>
+              <p className="text-muted-foreground text-sm">Ваше здоровье — наша забота</p>
             </div>
           </div>
         </div>
@@ -96,7 +92,6 @@ export default function PharmacyLinks() {
 
       {/* Main Content */}
       <div className="px-6 py-8 max-w-md mx-auto space-y-8">
-        
         {/* Quick Actions */}
         <div className="space-y-4">
           <h2 className="category-header">
@@ -230,17 +225,11 @@ export default function PharmacyLinks() {
 
         {/* Footer */}
         <div className="text-center py-6">
-          <p className="text-xs text-muted-foreground">
-            © 2024 Аптека «ВитаМед». Лицензия № 123456
-          </p>
+          <p className="text-xs text-muted-foreground">© 2024 Аптека «ВитаМед». Лицензия № 123456</p>
         </div>
       </div>
 
-      <BranchModal
-        branch={selectedBranch}
-        open={modalOpen}
-        onOpenChange={setModalOpen}
-      />
+      <BranchModal branch={selectedBranch} open={modalOpen} onOpenChange={setModalOpen} />
     </div>
-  )
+  );
 }
